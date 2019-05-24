@@ -1,0 +1,33 @@
+<div class="col-12">
+  <div class="col-12 padding10px">
+    <button nz-button nzType="primary" (click)="goBack()"><i nz-icon type="left"></i> Go back</button>
+  </div>
+  <div class="col-12 padding10px city_header">
+    {{cityName}} Weather
+  </div>
+</div>
+<nz-table class="padding10px" #filterTable [nzData]="listOfDisplayData">
+  <thead (nzSortChange)="sort($event)" nzSingleSort>
+    <tr>
+      <th
+        nzShowSort
+        nzSortKey="date"
+      >
+        Date
+      </th>
+      <th>Weather</th>
+      <th>
+        Temporature
+      </th>
+      <th>Pressure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of filterTable.data">
+      <td>{{ data.date }}</td>
+      <td>{{ data.weather }}</td>
+      <td>{{ data.temp }}</td>
+      <td>{{ data.pressure }}</td>
+    </tr>
+  </tbody>
+</nz-table>

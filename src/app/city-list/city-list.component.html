@@ -1,0 +1,45 @@
+<div class="col-12">
+  <div nz-row class="padding10px city_header">
+    <div nz-col nzSpan="16">
+      <img crossorigin="anonymous" class="logo" src="../../assets/icon.ico">Weather
+    </div>
+    <div nz-col nzSpan="8">
+      <nz-input-group [nzSuffix]="suffixIconSearch">
+        <input type="text" nz-input placeholder="Enter city name" [(ngModel)]="searchTerm" />
+      </nz-input-group>
+      <ng-template #suffixIconSearch>
+        <i nz-icon type="search"></i>
+      </ng-template>
+    </div>
+  </div>
+</div>
+<nz-table class="padding10px" #filterTable [nzData]="listOfDisplayData | filter: searchTerm" [nzShowPagination]="false">
+  <thead (nzSortChange)="sort($event)" nzSingleSort>
+    <tr>
+      <th
+        nzShowSort
+        nzSortKey="c_name"
+      >
+        Name
+      </th>
+      <th>Weather</th>
+      <th>Sunrise</th>
+      <th>Sunset</th>
+      <th
+        nzShowSort
+        nzSortKey="temp"
+      >
+        Temp
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of filterTable.data" (click)="onclickFun(data)">
+      <td>{{ data.c_name }}</td>
+      <td>{{ data.weather }}</td>
+      <td>{{ data.sun_rise }}</td>
+      <td>{{ data.sun_set }}</td>
+      <td>{{ data.temp }}</td>
+    </tr>
+  </tbody>
+</nz-table>
